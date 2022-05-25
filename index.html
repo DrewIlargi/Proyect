@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  
+  <!-- Favicons -->
+  <link href="public/assets/img/logosena.png" rel="icon">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+  <link href="public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="public/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="public/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="public/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="public/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="public/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="mb-5">
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+      <div class="d-flex align-items-center justify-content-between">
+        <!--<i class="bi bi-list toggle-sidebar-btn"></i>&nbsp;-->
+        <a href="index.html" class="logo d-flex align-items-center">
+          <b style="color:black; font-size: 20px;"><img src="public/assets/img/logosena.png" alt=""> SUB SEDE MALAMBO</b>
+        </a>
+      </div>
+
+      <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+  
+          <li class="nav-item d-block d-lg-none">
+            <a class="nav-link nav-icon search-bar-toggle " href="#">
+              <i class="bi bi-search"></i>
+            </a>
+          </li><!-- End Search Icon-->
+      </nav><!-- End Icons Navigation -->
+  
+    </header><!-- End Header -->
+  </div>
+
+  <br>
+  
+  <div class="container m-5">
+    <div class="card">
+      <div class="card-header">
+        <h1>WICASISTENCIA - Metalmecánica Malambo</h1>
+      </div>
+      <div class="card-body">
+        <form action=" " method="post" target="_blank">
+          
+          <div class="form-group m-3">
+            <div class="label h4">
+              Número de Documento
+            </div>
+            <input type="text" id="cedula" placeholder="Cédula o Tarjeta de ID" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="form-group m-3">
+            <div class="label h4">
+              Num. Imagenes
+            </div>
+            <input type="text" id="nImagenes" value="500" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          
+          <div class="form-group m-3">
+            <div class="label h4">
+              Num. Capturas
+            </div>
+            <input type="text" id="nCapturas" value="10" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          
+          <div class="form-group m-3">
+            <div class="label h4">
+              Seleccionar Camara
+            </div>
+            <select class="form-select form-control" name="select" id="camara" aria-describedby="inputGroup-sizing-sm">
+              <option selected>--SELECCIONAR--</option>
+              <option value="camInt">Camara Interna</option>
+              <option value="camExt">Camara Externa</option>
+            </select>
+          </div>
+        </form>
+        <hr>
+        <div class="container">
+          <br>
+          <h4 id="labelNombre" >Nombre: </h4>
+          <br>
+          <h4 id="labelPrograma" >Programa: </h4>
+          <br>
+          <h4 id="Reporte" >Reporte: </h4>
+          <br>
+        </div>
+        
+        <hr>
+
+        <center>
+        <div class="container">
+          <input class="btn btn-light" id="capaEntrada" type="button" value="Agregar Aprendiz" onclick="agAprendiz();" />
+          <input class="btn btn-light" id="capaEntretamiento" type="button" value="Entrenar IA" onclick="entAprendices();" />
+          <input class="btn btn-light" id="capaSalida" type="button" value="Identificar Aprendiz" onclick="ideAprendiz();" />
+          <input class="btn btn-light" id="detenerVideo" type="button" value="Detener" onclick="detener();" />
+        </div>
+        </center>
+        
+        <hr>
+
+        <div class="card">
+          <div class="card-body">
+            <img id="videoOutput" src=" " width="70%"/>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <script>
+
+    function agAprendiz()
+    {
+      let cedula = document.getElementById("cedula").value; 
+      let nImagenes = document.getElementById("nImagenes").value;
+      //document.getElementById("valueInput").innerHTML = inputValue;
+      Source="/capaEntrada"+"/"+cedula+"/"+nImagenes;
+      document.getElementById("videoOutput").src = Source;
+    }
+
+    function entAprendices()
+    {
+      document.getElementById("videoOutput").src="/capaEntrenamiento";
+    }
+
+    function ideAprendiz()
+    {
+      let nCapturas = document.getElementById("nCapturas").value; 
+      let Source="/capaSalida"+"/"+nCapturas;
+      document.getElementById("videoOutput").src=Source;
+    }
+
+    function detener()
+    {
+      document.getElementById("videoOutput").src=" ";
+    }
+
+    var seleccion=document.getElementById('camara');
+    console.log(seleccion);
+    console.log(seleccion.options[seleccion.selectedIndex].text);
+    console.log(seleccion.options[seleccion.selectedIndex].value);
+
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>  
+</body>
+
+</html>
